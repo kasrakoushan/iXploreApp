@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapAndTableViewController" customModule="iXplore" customModuleProvider="target">
+            <connections>
+                <outlet property="mapView" destination="uIm-FO-Tfs" id="Rod-tj-xqU"/>
+                <outlet property="tableView" destination="qS6-mM-NSQ" id="xVh-ia-1FK"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="uIm-FO-Tfs">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                </mapView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qS6-mM-NSQ">
+                    <rect key="frame" x="0.0" y="300" width="600" height="300"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="uIm-FO-Tfs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8yO-cw-LPJ"/>
+                <constraint firstAttribute="trailing" secondItem="uIm-FO-Tfs" secondAttribute="trailing" id="Ar4-EQ-OOX"/>
+                <constraint firstItem="uIm-FO-Tfs" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="UbZ-5V-J7f"/>
+                <constraint firstItem="qS6-mM-NSQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Xnf-xC-RYp"/>
+                <constraint firstAttribute="bottom" secondItem="qS6-mM-NSQ" secondAttribute="bottom" id="Yc8-sk-hgl"/>
+                <constraint firstItem="uIm-FO-Tfs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aVN-Pu-a53"/>
+                <constraint firstAttribute="trailing" secondItem="qS6-mM-NSQ" secondAttribute="trailing" id="eaK-dg-qPB"/>
+                <constraint firstItem="qS6-mM-NSQ" firstAttribute="top" secondItem="uIm-FO-Tfs" secondAttribute="bottom" id="nPU-HU-AZc"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
