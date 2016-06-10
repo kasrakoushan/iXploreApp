@@ -21,10 +21,18 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
 
         // Do any additional setup after loading the view.
         
+        // get places
         self.places = Place.getPlaces()
+        
+        // set the table's data source and delegate
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        // set the type of the map
         self.mapView.mapType = MKMapType.Hybrid
+        
+        // register custom table cell
+        self.tableView.registerNib(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableViewCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,10 +67,20 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        // return the location with the given name
-        let cell = UITableViewCell()
-        cell.textLabel?.text = self.places[indexPath.row].title
+        // first initialize the cell
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("CustomTableViewCell", forIndexPath: indexPath) as! CustomTableViewCell
+        
+        // set up the image
+        let place = self.places[indexPath.row]
+        let url = NSURL(string: place.imageURL!)
+        let data = NSData(contentsOfURL: url!)
+        cell.cellLabel.text = self.places[indexPath.row].title
+        cell.cellImage.image = UIImage(data: data!)
         return cell
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 80
     }
 
 }

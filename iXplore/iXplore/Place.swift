@@ -29,9 +29,9 @@ class Place: NSObject, MKAnnotation {
                       CLLocationCoordinate2D(latitude: 43.6573945, longitude: -79.3977025)]
         
         // set place objects
-        let list = [Place(coord: points[0], name: "212 Parkview"),
-                    Place(coord: points[1], name: "3574 Hutchison"),
-                    Place(coord: points[2], name: "216 Beverley")]
+        let list = [Place(coord: points[0], name: "212 Parkview", imageURL: "https://iscale.iheart.com/v3/url/aHR0cDovL2ltYWdlLmloZWFydC5jb20vaW1hZ2VzL3JvdmkvMTA4MC8wMDAzLzcyMy9NSTAwMDM3MjM4NDguanBn"),
+                    Place(coord: points[1], name: "3574 Hutchison", imageURL: "https://media.gq.com/photos/566f53b622c04e90668117ae/master/pass/Swerves-of-2015-drake-hotline-bling.jpg"),
+                    Place(coord: points[2], name: "216 Beverley", imageURL: "https://developer.apple.com/swift/images/swift-og.png")]
         return list
     }
 }

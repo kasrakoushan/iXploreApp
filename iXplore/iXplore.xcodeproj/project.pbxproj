@@ -14,6 +14,8 @@
 		A17393001D0852C400D3C1C9 /* MapAndTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A17392FE1D0852C400D3C1C9 /* MapAndTableViewController.xib */; };
 		A17393031D08538200D3C1C9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A17393021D08538200D3C1C9 /* MapKit.framework */; };
 		A17393061D0853A900D3C1C9 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17393051D0853A900D3C1C9 /* Place.swift */; };
+		A1A91EDD1D085DDE00A885F9 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A91EDB1D085DDE00A885F9 /* CustomTableViewCell.swift */; };
+		A1A91EDE1D085DDE00A885F9 /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1A91EDC1D085DDE00A885F9 /* CustomTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		A17392FE1D0852C400D3C1C9 /* MapAndTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapAndTableViewController.xib; sourceTree = "<group>"; };
 		A17393021D08538200D3C1C9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A17393051D0853A900D3C1C9 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		A1A91EDB1D085DDE00A885F9 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		A1A91EDC1D085DDE00A885F9 /* CustomTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,8 @@
 				A17392F21D08513300D3C1C9 /* Assets.xcassets */,
 				A17392F41D08513300D3C1C9 /* LaunchScreen.storyboard */,
 				A17392F71D08513300D3C1C9 /* Info.plist */,
+				A1A91EDB1D085DDE00A885F9 /* CustomTableViewCell.swift */,
+				A1A91EDC1D085DDE00A885F9 /* CustomTableViewCell.xib */,
 			);
 			path = iXplore;
 			sourceTree = "<group>";
@@ -152,6 +158,7 @@
 			files = (
 				A17392F61D08513300D3C1C9 /* LaunchScreen.storyboard in Resources */,
 				A17392F31D08513300D3C1C9 /* Assets.xcassets in Resources */,
+				A1A91EDE1D085DDE00A885F9 /* CustomTableViewCell.xib in Resources */,
 				A17393001D0852C400D3C1C9 /* MapAndTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -165,6 +172,7 @@
 			files = (
 				A17393061D0853A900D3C1C9 /* Place.swift in Sources */,
 				A17392FF1D0852C400D3C1C9 /* MapAndTableViewController.swift in Sources */,
+				A1A91EDD1D085DDE00A885F9 /* CustomTableViewCell.swift in Sources */,
 				A17392EC1D08513300D3C1C9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,6 +315,7 @@
 				A17392FC1D08513300D3C1C9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
