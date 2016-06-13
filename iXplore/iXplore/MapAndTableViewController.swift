@@ -70,17 +70,39 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         // first initialize the cell
         let cell = self.tableView.dequeueReusableCellWithIdentifier("CustomTableViewCell", forIndexPath: indexPath) as! CustomTableViewCell
         
-        // set up the image
+        // set up the place object and set its label
         let place = self.places[indexPath.row]
+        cell.cellLabel.text = place.title
+        
+        // set up the image from the given URL
         let url = NSURL(string: place.imageURL!)
         let data = NSData(contentsOfURL: url!)
-        cell.cellLabel.text = self.places[indexPath.row].title
         cell.cellImage.image = UIImage(data: data!)
+        
+        // set the date of the object
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy HH:mm aaa"
+        cell.dateLabel.text = dateFormatter.stringFromDate(place.date)
+        
+        // then return the cell
         return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 80
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            // remove place from backend
+            self.places.removeAtIndex(indexPath.row)
+            // remove row from table
+            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+        }
     }
 
 }

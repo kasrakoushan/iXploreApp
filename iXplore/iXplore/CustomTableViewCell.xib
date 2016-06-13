@@ -17,9 +17,15 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="STR-c6-kLv">
                         <rect key="frame" x="8" y="4" width="69" height="71"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Test" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QIj-WU-6Ku">
-                        <rect key="frame" x="95" y="8" width="209" height="63"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QIj-WU-6Ku">
+                        <rect key="frame" x="95" y="8" width="209" height="29"/>
                         <fontDescription key="fontDescription" type="italicSystem" pointSize="22"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KWO-dA-IgV">
+                        <rect key="frame" x="95" y="42" width="209" height="29"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -28,6 +34,7 @@
             <connections>
                 <outlet property="cellImage" destination="STR-c6-kLv" id="jC6-ix-6mA"/>
                 <outlet property="cellLabel" destination="QIj-WU-6Ku" id="qrH-VX-17E"/>
+                <outlet property="dateLabel" destination="KWO-dA-IgV" id="heb-Qd-jfT"/>
             </connections>
             <point key="canvasLocation" x="416" y="335"/>
         </tableViewCell>

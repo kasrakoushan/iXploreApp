@@ -13,6 +13,7 @@ class CustomTableViewCell: UITableViewCell {
     
     @IBOutlet var cellImage: UIImageView!
     @IBOutlet var cellLabel: UILabel!
+    @IBOutlet var dateLabel: UILabel!
     
     var title: String? = ""
     var imageURL: String? = ""
