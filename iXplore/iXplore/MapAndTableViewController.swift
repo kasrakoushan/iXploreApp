@@ -32,7 +32,7 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         self.mapView.mapType = MKMapType.Hybrid
         
         // register custom table cell
-        self.tableView.registerNib(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableViewCell")
+        self.tableView.registerClass(CustomTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
         
         // set the map's delegate to be self
         self.mapView.delegate = self
