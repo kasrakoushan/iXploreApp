@@ -15,6 +15,7 @@ class CustomTableViewCell: UITableViewCell {
     var cellImage: UIImageView!
     var cellLabel: UILabel!
     var dateLabel: UILabel!
+    var starImage: UIImageView!
     
     // table cell properties
     var title: String? = ""
@@ -48,6 +49,13 @@ class CustomTableViewCell: UITableViewCell {
         self.dateLabel.font = UIFont(name: "Georgia", size: 15)
         self.dateLabel.textAlignment = NSTextAlignment.Right
         self.addSubview(self.dateLabel)
+        
+        // add a star subview
+        frame = CGRectMake(width, height/2, height/2, height/2)
+        self.starImage = UIImageView(frame: frame)
+        self.starImage.image = UIImage(named: "star_black.png")
+        self.addSubview(self.starImage)
+        
         
     }
     

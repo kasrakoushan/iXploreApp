@@ -15,6 +15,15 @@
 		A17393031D08538200D3C1C9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A17393021D08538200D3C1C9 /* MapKit.framework */; };
 		A17393061D0853A900D3C1C9 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17393051D0853A900D3C1C9 /* Place.swift */; };
 		A1A91EDD1D085DDE00A885F9 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A91EDB1D085DDE00A885F9 /* CustomTableViewCell.swift */; };
+		A1D694AC1D0F079000BDDFCF /* star_black.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D694AA1D0F079000BDDFCF /* star_black.png */; };
+		A1D694AD1D0F079000BDDFCF /* star_pink.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D694AB1D0F079000BDDFCF /* star_pink.png */; };
+		A1D694B11D0F0C2200BDDFCF /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D694AF1D0F0C2200BDDFCF /* AuthenticationViewController.swift */; };
+		A1D694B21D0F0C2200BDDFCF /* AuthenticationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D694B01D0F0C2200BDDFCF /* AuthenticationViewController.xib */; };
+		A1D694B51D0F615600BDDFCF /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D694B31D0F615600BDDFCF /* RegisterViewController.swift */; };
+		A1D694B61D0F615600BDDFCF /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D694B41D0F615600BDDFCF /* RegisterViewController.xib */; };
+		A1D694B91D0F616500BDDFCF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D694B71D0F616500BDDFCF /* LoginViewController.swift */; };
+		A1D694BA1D0F616500BDDFCF /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A1D694B81D0F616500BDDFCF /* LoginViewController.xib */; };
+		A1D694BC1D0F63DD00BDDFCF /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D694BB1D0F63DD00BDDFCF /* UserController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +37,15 @@
 		A17393021D08538200D3C1C9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A17393051D0853A900D3C1C9 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		A1A91EDB1D085DDE00A885F9 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		A1D694AA1D0F079000BDDFCF /* star_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_black.png; sourceTree = "<group>"; };
+		A1D694AB1D0F079000BDDFCF /* star_pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_pink.png; sourceTree = "<group>"; };
+		A1D694AF1D0F0C2200BDDFCF /* AuthenticationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
+		A1D694B01D0F0C2200BDDFCF /* AuthenticationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthenticationViewController.xib; sourceTree = "<group>"; };
+		A1D694B31D0F615600BDDFCF /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		A1D694B41D0F615600BDDFCF /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
+		A1D694B71D0F616500BDDFCF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A1D694B81D0F616500BDDFCF /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		A1D694BB1D0F63DD00BDDFCF /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,13 +80,14 @@
 		A17392EA1D08513300D3C1C9 /* iXplore */ = {
 			isa = PBXGroup;
 			children = (
+				A1D694AE1D0F0B4600BDDFCF /* Onboarding */,
+				A1D694A91D0F078700BDDFCF /* images */,
 				A17393041D08539C00D3C1C9 /* Model */,
 				A17392EB1D08513300D3C1C9 /* AppDelegate.swift */,
 				A17393011D0852CD00D3C1C9 /* Screens */,
 				A17392F21D08513300D3C1C9 /* Assets.xcassets */,
 				A17392F41D08513300D3C1C9 /* LaunchScreen.storyboard */,
 				A17392F71D08513300D3C1C9 /* Info.plist */,
-				A1A91EDB1D085DDE00A885F9 /* CustomTableViewCell.swift */,
 			);
 			path = iXplore;
 			sourceTree = "<group>";
@@ -85,9 +104,33 @@
 		A17393041D08539C00D3C1C9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A1A91EDB1D085DDE00A885F9 /* CustomTableViewCell.swift */,
 				A17393051D0853A900D3C1C9 /* Place.swift */,
+				A1D694BB1D0F63DD00BDDFCF /* UserController.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		A1D694A91D0F078700BDDFCF /* images */ = {
+			isa = PBXGroup;
+			children = (
+				A1D694AA1D0F079000BDDFCF /* star_black.png */,
+				A1D694AB1D0F079000BDDFCF /* star_pink.png */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		A1D694AE1D0F0B4600BDDFCF /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				A1D694AF1D0F0C2200BDDFCF /* AuthenticationViewController.swift */,
+				A1D694B01D0F0C2200BDDFCF /* AuthenticationViewController.xib */,
+				A1D694B31D0F615600BDDFCF /* RegisterViewController.swift */,
+				A1D694B41D0F615600BDDFCF /* RegisterViewController.xib */,
+				A1D694B71D0F616500BDDFCF /* LoginViewController.swift */,
+				A1D694B81D0F616500BDDFCF /* LoginViewController.xib */,
+			);
+			name = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -153,9 +196,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1D694BA1D0F616500BDDFCF /* LoginViewController.xib in Resources */,
+				A1D694B21D0F0C2200BDDFCF /* AuthenticationViewController.xib in Resources */,
 				A17392F61D08513300D3C1C9 /* LaunchScreen.storyboard in Resources */,
+				A1D694B61D0F615600BDDFCF /* RegisterViewController.xib in Resources */,
 				A17392F31D08513300D3C1C9 /* Assets.xcassets in Resources */,
+				A1D694AD1D0F079000BDDFCF /* star_pink.png in Resources */,
 				A17393001D0852C400D3C1C9 /* MapAndTableViewController.xib in Resources */,
+				A1D694AC1D0F079000BDDFCF /* star_black.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,8 +214,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1D694B91D0F616500BDDFCF /* LoginViewController.swift in Sources */,
 				A17393061D0853A900D3C1C9 /* Place.swift in Sources */,
+				A1D694BC1D0F63DD00BDDFCF /* UserController.swift in Sources */,
 				A17392FF1D0852C400D3C1C9 /* MapAndTableViewController.swift in Sources */,
+				A1D694B11D0F0C2200BDDFCF /* AuthenticationViewController.swift in Sources */,
+				A1D694B51D0F615600BDDFCF /* RegisterViewController.swift in Sources */,
 				A1A91EDD1D085DDE00A885F9 /* CustomTableViewCell.swift in Sources */,
 				A17392EC1D08513300D3C1C9 /* AppDelegate.swift in Sources */,
 			);

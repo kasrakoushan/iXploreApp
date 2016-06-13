@@ -13,15 +13,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var mapAndTableViewController: UIViewController?
+    var authenticationNavigationController: UIViewController?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        let loggedIn = false
         
-        // set up main view controller
+        // set up map and table view controller
         self.mapAndTableViewController = MapAndTableViewController(nibName: "MapAndTableViewController", bundle: nil)
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window?.rootViewController = self.mapAndTableViewController
+        
+        // set up authentication view controller
+        let avc = AuthenticationViewController(nibName: "AuthenticationViewController", bundle: nil)
+        self.authenticationNavigationController = UINavigationController(rootViewController: avc)
+        
+        // go to the proper navigation controller
+        if (loggedIn) {
+            self.window?.rootViewController = self.mapAndTableViewController
+        } else {
+            self.window?.rootViewController = self.authenticationNavigationController
+        }
+        
+        
         self.window?.makeKeyAndVisible()
         
         return true
@@ -47,6 +61,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    
+    func navigateToMainController() {
+        self.window?.rootViewController = self.mapAndTableViewController
     }
 
 

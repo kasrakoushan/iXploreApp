@@ -52,7 +52,6 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // deselect the other annotations
         for annotation in self.places {
-//            self.mapView.deselectAnnotation(annotation, animated: true)
             self.mapView.removeAnnotation(annotation)
         }
         
@@ -68,7 +67,6 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         
         // select the annotation
         self.mapView.addAnnotation(place)
-//        self.mapView.selectAnnotation(place, animated: true)
     }
     
     // return the cell at the given row in the table
@@ -104,16 +102,6 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         return true
     }
     
-    // method to execute when deleting a table cell
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.Delete {
-            // remove place from backend
-            self.places.removeAtIndex(indexPath.row)
-            // remove row from table
-            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
-        }
-    }
-    
     // return the view for a given annotation on the map
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         let pin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
@@ -126,5 +114,59 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         
         return pin
     }
-
+    
+    func editRowAtIndexPath(action: UITableViewRowAction, indexPath: NSIndexPath) {
+        switch action.title! {
+        case "Delete":
+            // remove annotation from map
+            self.mapView.removeAnnotation(self.places[indexPath.row])
+            // remove place from backend
+            self.places.removeAtIndex(indexPath.row)
+            // remove row from table
+            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+        case "Favorite", "Unfavorite":
+            // set favorite property of the given place to true
+            self.places[indexPath.row].favorite = !self.places[indexPath.row].favorite
+            // remove and replace pin
+            self.mapView.removeAnnotation(self.places[indexPath.row])
+            self.mapView.addAnnotation(self.places[indexPath.row])
+            // update the cell in the table
+            if (self.places[indexPath.row]).favorite {
+                (self.tableView.cellForRowAtIndexPath(indexPath) as! CustomTableViewCell).starImage.image = UIImage(named: "star_pink.png")
+            } else {
+                (self.tableView.cellForRowAtIndexPath(indexPath) as! CustomTableViewCell).starImage.image = UIImage(named: "star_black.png")
+            }
+        default:
+            break
+        }
+        
+        self.tableView.setEditing(false, animated: true)
+    }
+    
+    
+    // return the possible actions at the given table row
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        // create delete button
+        let delete = UITableViewRowAction(style: .Normal, title: "Delete", handler: {(action, path) in
+            self.editRowAtIndexPath(action, indexPath: path)
+        })
+        delete.backgroundColor = UIColor.redColor()
+        
+        // create favorite button
+        var favoriteMessage = "Favorite"
+        if self.places[indexPath.row].favorite {
+            favoriteMessage = "Unfavorite"
+        }
+        let favorite = UITableViewRowAction(style: .Normal, title: favoriteMessage, handler: {(action, path) in
+            self.editRowAtIndexPath(action, indexPath: path)
+        })
+        if self.places[indexPath.row].favorite {
+            favorite.backgroundColor = UIColor.orangeColor()
+        } else {
+            favorite.backgroundColor = UIColor.greenColor()
+        }
+        
+        return [favorite, delete]
+        
+    }
 }
