@@ -43,18 +43,20 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         // Dispose of any resources that can be recreated.
     }
     
+    // return the number of rows in the given section
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.places.count
     }
     
-    
+    // execute something once a cell in the table has been selected
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // deselect the other annotations
         for annotation in self.places {
-            self.mapView.deselectAnnotation(annotation, animated: true)
+//            self.mapView.deselectAnnotation(annotation, animated: true)
+            self.mapView.removeAnnotation(annotation)
         }
         
-        // un-highlight the row in the table
+        // deselect the row in the table
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         // navigate to the selected region in the map
@@ -66,9 +68,10 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         
         // select the annotation
         self.mapView.addAnnotation(place)
-        self.mapView.selectAnnotation(place, animated: true)
+//        self.mapView.selectAnnotation(place, animated: true)
     }
     
+    // return the cell at the given row in the table
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // first initialize the cell
         let cell = self.tableView.dequeueReusableCellWithIdentifier("CustomTableViewCell", forIndexPath: indexPath) as! CustomTableViewCell
@@ -91,14 +94,17 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         return cell
     }
     
+    // return the height of the cell at a given row
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 80
     }
     
+    // return whether the cell at a row can be edited
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
     
+    // method to execute when deleting a table cell
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             // remove place from backend
@@ -108,6 +114,7 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         }
     }
     
+    // return the view for a given annotation on the map
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         let pin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
         pin.animatesDrop = true

@@ -24,7 +24,7 @@ class Place: NSObject, MKAnnotation {
         self.title = title
         self.imageURL = imageURL
         self.placeDescription = description
-        self.favorite = true
+        self.favorite = false
         
     }
     
