@@ -15,6 +15,7 @@ class Place: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var placeDescription: String?
     var date: NSDate
+    var favorite: Bool
     
     init(coord: CLLocationCoordinate2D, title: String? = nil, imageURL: String? = nil, description: String? = nil) {
         // initialize with given coordinates (and potentially with name and image URL)
@@ -23,6 +24,7 @@ class Place: NSObject, MKAnnotation {
         self.title = title
         self.imageURL = imageURL
         self.placeDescription = description
+        self.favorite = true
         
     }
     

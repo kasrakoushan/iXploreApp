@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MKMapViewDelegate {
     
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var tableView: UITableView!
@@ -33,6 +33,9 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         
         // register custom table cell
         self.tableView.registerNib(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableViewCell")
+        
+        // set the map's delegate to be self
+        self.mapView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -103,6 +106,18 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
             // remove row from table
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
         }
+    }
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        let pin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
+        pin.animatesDrop = true
+        if (annotation as! Place).favorite {
+            pin.pinTintColor = UIColor.purpleColor()
+        } else {
+            pin.pinTintColor = UIColor.redColor()
+        }
+        
+        return pin
     }
 
 }
