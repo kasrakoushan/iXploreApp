@@ -15,7 +15,7 @@ struct User {
 }
 
 class UserController {
-    // singleton variable
+    // singleton pattern
     class var sharedInstance: UserController {
         struct Static {
             static var instance:UserController?

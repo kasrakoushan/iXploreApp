@@ -12,8 +12,8 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var mapAndTableViewController: UIViewController?
-    var authenticationNavigationController: UIViewController?
+    var mapAndTableNavigationController: UINavigationController?
+    var authenticationNavigationController: UINavigationController?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -21,16 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let loggedIn = false
         
         // set up map and table view controller
-        self.mapAndTableViewController = MapAndTableViewController(nibName: "MapAndTableViewController", bundle: nil)
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let mapAndTableViewController = MapAndTableViewController(nibName: "MapAndTableViewController", bundle: nil)
+        self.mapAndTableNavigationController = UINavigationController(rootViewController: mapAndTableViewController)
         
         // set up authentication view controller
         let avc = AuthenticationViewController(nibName: "AuthenticationViewController", bundle: nil)
         self.authenticationNavigationController = UINavigationController(rootViewController: avc)
         
         // go to the proper navigation controller
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         if (loggedIn) {
-            self.window?.rootViewController = self.mapAndTableViewController
+            self.window?.rootViewController = self.mapAndTableNavigationController
         } else {
             self.window?.rootViewController = self.authenticationNavigationController
         }
@@ -64,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func navigateToMainController() {
-        self.window?.rootViewController = self.mapAndTableViewController
+        self.window?.rootViewController = self.mapAndTableNavigationController
     }
 
 

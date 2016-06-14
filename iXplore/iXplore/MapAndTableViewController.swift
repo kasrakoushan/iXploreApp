@@ -22,20 +22,27 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         // Do any additional setup after loading the view.
         
         // get places
-        self.places = Place.getPlaces()
+        self.places = PlaceController.sharedInstance.getPlaces()
+        print("there are \(self.places.count) places")
         
+        // TABLE WORK
         // set the table's data source and delegate
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
-        // set the type of the map
-        self.mapView.mapType = MKMapType.Hybrid
-        
         // register custom table cell
         self.tableView.registerClass(CustomTableViewCell.self, forCellReuseIdentifier: "CustomTableViewCell")
         
+        // MAP WORK
+        // set the type of the map
+        self.mapView.mapType = MKMapType.Hybrid
         // set the map's delegate to be self
         self.mapView.delegate = self
+        
+        // NAVIGATION WORK
+        self.navigationController?.navigationBar.hidden = false
+        let button = UIBarButtonItem(title: "New Place", style: UIBarButtonItemStyle.Plain, target: self,
+                                     action: #selector(MapAndTableViewController.newPlaceButtonTapped))
+        self.navigationItem.rightBarButtonItem = button
     }
 
     override func didReceiveMemoryWarning() {
@@ -79,9 +86,11 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         cell.cellLabel.text = place.title
         
         // set up the image from the given URL
-        let url = NSURL(string: place.imageURL!)
-        let data = NSData(contentsOfURL: url!)
-        cell.cellImage.image = UIImage(data: data!)
+        if place.imageURL != nil {
+            let url = NSURL(string: place.imageURL!)
+            let data = NSData(contentsOfURL: url!)
+            cell.cellImage.image = UIImage(data: data!)
+        }
         
         // set the date of the object
         let dateFormatter = NSDateFormatter()
@@ -169,4 +178,10 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         return [favorite, delete]
         
     }
+    
+    func newPlaceButtonTapped() {
+        let npvc = NewPlaceViewController(nibName: "NewPlaceViewController", bundle: nil)
+        self.presentViewController(npvc, animated: true, completion: nil)
+    }
+    
 }
