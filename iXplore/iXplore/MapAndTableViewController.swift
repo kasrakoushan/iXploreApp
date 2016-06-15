@@ -13,18 +13,13 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
     
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var tableView: UITableView!
-    var places = [Place]()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        
-        // get places
-        self.places = PlaceController.sharedInstance.getPlaces()
-        print("there are \(self.places.count) places")
-        
+                
         // TABLE WORK
         // set the table's data source and delegate
         self.tableView.delegate = self
@@ -50,15 +45,19 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.tableView.reloadData()
+    }
+    
     // return the number of rows in the given section
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.places.count
+        return PlaceController.sharedInstance.places.count
     }
     
     // execute something once a cell in the table has been selected
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         // deselect the other annotations
-        for annotation in self.places {
+        for annotation in PlaceController.sharedInstance.places {
             self.mapView.removeAnnotation(annotation)
         }
         
@@ -66,7 +65,7 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         // navigate to the selected region in the map
-        let place = self.places[indexPath.row]
+        let place = PlaceController.sharedInstance.places[indexPath.row]
         let coord = place.coordinate
         let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
         let region = MKCoordinateRegion(center: coord, span: span)
@@ -82,7 +81,7 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         let cell = self.tableView.dequeueReusableCellWithIdentifier("CustomTableViewCell", forIndexPath: indexPath) as! CustomTableViewCell
         
         // set up the place object and set its label
-        let place = self.places[indexPath.row]
+        let place = PlaceController.sharedInstance.places[indexPath.row]
         cell.cellLabel.text = place.title
         
         // set up the image from the given URL
@@ -97,8 +96,15 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         dateFormatter.dateFormat = "MM/dd/yyyy HH:mm aaa"
         cell.dateLabel.text = dateFormatter.stringFromDate(place.date)
         
-        // then return the cell
+        // update favorite for the cell
+        if place.favorite {
+            cell.starImage.image = UIImage(named: "star_pink.png")
+        } else {
+            cell.starImage.image = UIImage(named: "star_black.png")
+        }
+        
         return cell
+        
     }
     
     // return the height of the cell at a given row
@@ -128,19 +134,19 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         switch action.title! {
         case "Delete":
             // remove annotation from map
-            self.mapView.removeAnnotation(self.places[indexPath.row])
+            self.mapView.removeAnnotation(PlaceController.sharedInstance.places[indexPath.row])
             // remove place from backend
-            self.places.removeAtIndex(indexPath.row)
+            PlaceController.sharedInstance.places.removeAtIndex(indexPath.row)
             // remove row from table
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
         case "Favorite", "Unfavorite":
             // set favorite property of the given place to true
-            self.places[indexPath.row].favorite = !self.places[indexPath.row].favorite
+            PlaceController.sharedInstance.places[indexPath.row].favorite = !PlaceController.sharedInstance.places[indexPath.row].favorite
             // remove and replace pin
-            self.mapView.removeAnnotation(self.places[indexPath.row])
-            self.mapView.addAnnotation(self.places[indexPath.row])
+            self.mapView.removeAnnotation(PlaceController.sharedInstance.places[indexPath.row])
+            self.mapView.addAnnotation(PlaceController.sharedInstance.places[indexPath.row])
             // update the cell in the table
-            if (self.places[indexPath.row]).favorite {
+            if (PlaceController.sharedInstance.places[indexPath.row]).favorite {
                 (self.tableView.cellForRowAtIndexPath(indexPath) as! CustomTableViewCell).starImage.image = UIImage(named: "star_pink.png")
             } else {
                 (self.tableView.cellForRowAtIndexPath(indexPath) as! CustomTableViewCell).starImage.image = UIImage(named: "star_black.png")
@@ -163,13 +169,13 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         
         // create favorite button
         var favoriteMessage = "Favorite"
-        if self.places[indexPath.row].favorite {
+        if PlaceController.sharedInstance.places[indexPath.row].favorite {
             favoriteMessage = "Unfavorite"
         }
         let favorite = UITableViewRowAction(style: .Normal, title: favoriteMessage, handler: {(action, path) in
             self.editRowAtIndexPath(action, indexPath: path)
         })
-        if self.places[indexPath.row].favorite {
+        if PlaceController.sharedInstance.places[indexPath.row].favorite {
             favorite.backgroundColor = UIColor.orangeColor()
         } else {
             favorite.backgroundColor = UIColor.greenColor()

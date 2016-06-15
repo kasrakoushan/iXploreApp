@@ -51,7 +51,7 @@ class CustomTableViewCell: UITableViewCell {
         self.addSubview(self.dateLabel)
         
         // add a star subview
-        frame = CGRectMake(width, height/2, height/2, height/2)
+        frame = CGRectMake(width, height/4, height/2, height/2)
         self.starImage = UIImageView(frame: frame)
         self.starImage.image = UIImage(named: "star_black.png")
         self.addSubview(self.starImage)

@@ -31,6 +31,7 @@ class NewPlaceViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func cancelButtonTapped(sender: UIButton) {
+//        (self.parentViewController as? MapAndTableViewController)!.updatePlaces()
         self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -40,10 +41,11 @@ class NewPlaceViewController: UIViewController, UITextFieldDelegate {
                                                 longitude: Double(self.longitudeField.text!)!)
         PlaceController.sharedInstance.addPlace(coordinate, title: self.titleField.text!,
                                                 placeDescription: self.descriptionField.text!)
+        self.cancelButtonTapped(sender)
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        let allowedChars = ["-", ".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+        let allowedChars = ["-", ".", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ""]
         if allowedChars.contains(string) {
             return true
         } else {
