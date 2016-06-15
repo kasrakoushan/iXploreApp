@@ -131,26 +131,29 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
     }
     
     func editRowAtIndexPath(action: UITableViewRowAction, indexPath: NSIndexPath) {
+        let place = PlaceController.sharedInstance.places[indexPath.row]
         switch action.title! {
         case "Delete":
             // remove annotation from map
-            self.mapView.removeAnnotation(PlaceController.sharedInstance.places[indexPath.row])
+            self.mapView.removeAnnotation(place)
             // remove place from backend
             PlaceController.sharedInstance.places.removeAtIndex(indexPath.row)
             // remove row from table
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
         case "Favorite", "Unfavorite":
             // set favorite property of the given place to true
-            PlaceController.sharedInstance.places[indexPath.row].favorite = !PlaceController.sharedInstance.places[indexPath.row].favorite
+            place.favorite = !place.favorite
             // remove and replace pin
-            self.mapView.removeAnnotation(PlaceController.sharedInstance.places[indexPath.row])
-            self.mapView.addAnnotation(PlaceController.sharedInstance.places[indexPath.row])
+            self.mapView.removeAnnotation(place)
+            self.mapView.addAnnotation(place)
             // update the cell in the table
-            if (PlaceController.sharedInstance.places[indexPath.row]).favorite {
+            if place.favorite {
                 (self.tableView.cellForRowAtIndexPath(indexPath) as! CustomTableViewCell).starImage.image = UIImage(named: "star_pink.png")
             } else {
                 (self.tableView.cellForRowAtIndexPath(indexPath) as! CustomTableViewCell).starImage.image = UIImage(named: "star_black.png")
             }
+            // now persist this change
+            PlaceController.sharedInstance.updatePlace(place)
         default:
             break
         }

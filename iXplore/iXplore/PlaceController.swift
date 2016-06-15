@@ -88,6 +88,7 @@ class PlaceController {
         
     }
     
+    // populate the places property
     func getPlaces() {
         if self.places.count == 0 {
             self.readPlacesFromMemory()
@@ -95,6 +96,11 @@ class PlaceController {
                 self.places = PlaceController.getTestPlaces()
             }
         }
+    }
+    
+    // the place's coordinate must remain the same; all other properties can change
+    func updatePlace(place: Place) {
+        PersistenceManager.storePlace(place)
     }
     
 }
