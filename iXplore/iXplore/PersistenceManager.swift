@@ -37,4 +37,15 @@ class PersistenceManager {
         let documentDirectory = paths[0]
         return documentDirectory
     }
+    
+    // remove place from memory
+    class func removePlace(place: Place) {
+        let path = PersistenceManager.documentsDirectory().stringByAppendingString("/\(place.coordinate.latitude),\(place.coordinate.longitude).\(PLACE_FILE_EXTENSION)")
+        let fileManager = NSFileManager.defaultManager()
+        do {
+            try fileManager.removeItemAtPath(path)
+        } catch {
+            print("something went wrong")
+        }
+    }
 }

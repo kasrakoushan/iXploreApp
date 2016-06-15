@@ -74,6 +74,14 @@ class PlaceController {
         PersistenceManager.storePlace(place)
     }
     
+    func removePlace(path: NSIndexPath) {
+        let place = self.places[path.row]
+        // remove from places array
+        self.places.removeAtIndex(path.row)
+        // remove from memory
+        PersistenceManager.removePlace(place)
+    }
+    
     // iterate through all stored places and append them to the array
     private func readPlacesFromMemory() {
         let path = PersistenceManager.documentsDirectory()

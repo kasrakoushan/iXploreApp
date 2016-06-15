@@ -137,7 +137,7 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
             // remove annotation from map
             self.mapView.removeAnnotation(place)
             // remove place from backend
-            PlaceController.sharedInstance.places.removeAtIndex(indexPath.row)
+            PlaceController.sharedInstance.removePlace(indexPath)
             // remove row from table
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
         case "Favorite", "Unfavorite":
