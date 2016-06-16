@@ -82,20 +82,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        let alertController = UIAlertController(title: "Error", message: "Could not obtain location. You may still use the app.", preferredStyle: UIAlertControllerStyle.Alert)
-        let okAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-        
-        alertController.addAction(okAction)
-        self.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+        print("location manager failed with error \(error.description)")
+        let alert = AlertHelper.returnOneOptionAlert("Error", description: "Could not obtain location. You may still use the app.", optionTitle: "OK")
+        self.window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
     }
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == CLAuthorizationStatus.AuthorizedWhenInUse {
+        switch status {
+        case .NotDetermined:
+            self.locationManager?.requestAlwaysAuthorization()
+            break
+        case .AuthorizedWhenInUse:
             self.locationManager?.desiredAccuracy = kCLLocationAccuracyKilometer
             self.locationManager?.startUpdatingLocation()
-            self.locationManager?.requestLocation()
+            break
+        case .AuthorizedAlways:
+            self.locationManager?.startUpdatingLocation()
+            break
+        case .Restricted:
+            // restricted by e.g. parental controls. User can't enable Location Services
+            break
+        case .Denied:
+            // user denied your app access to Location Services, but can grant access from Settings.app
+            break
+        default:
+            break
         }
     }
+    
 
 }
 

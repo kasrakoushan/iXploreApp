@@ -14,6 +14,7 @@
 		A17393001D0852C400D3C1C9 /* MapAndTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A17392FE1D0852C400D3C1C9 /* MapAndTableViewController.xib */; };
 		A17393031D08538200D3C1C9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A17393021D08538200D3C1C9 /* MapKit.framework */; };
 		A1A91EDD1D085DDE00A885F9 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A91EDB1D085DDE00A885F9 /* CustomTableViewCell.swift */; };
+		A1C8005A1D12DA8C00E82441 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C800591D12DA8C00E82441 /* AlertHelper.swift */; };
 		A1D694AC1D0F079000BDDFCF /* star_black.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D694AA1D0F079000BDDFCF /* star_black.png */; };
 		A1D694AD1D0F079000BDDFCF /* star_pink.png in Resources */ = {isa = PBXBuildFile; fileRef = A1D694AB1D0F079000BDDFCF /* star_pink.png */; };
 		A1D694B11D0F0C2200BDDFCF /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D694AF1D0F0C2200BDDFCF /* AuthenticationViewController.swift */; };
@@ -40,6 +41,7 @@
 		A17392FE1D0852C400D3C1C9 /* MapAndTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapAndTableViewController.xib; sourceTree = "<group>"; };
 		A17393021D08538200D3C1C9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		A1A91EDB1D085DDE00A885F9 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		A1C800591D12DA8C00E82441 /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		A1D694AA1D0F079000BDDFCF /* star_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_black.png; sourceTree = "<group>"; };
 		A1D694AB1D0F079000BDDFCF /* star_pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star_pink.png; sourceTree = "<group>"; };
 		A1D694AF1D0F0C2200BDDFCF /* AuthenticationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
@@ -92,9 +94,9 @@
 				A1D694A91D0F078700BDDFCF /* images */,
 				A17393041D08539C00D3C1C9 /* Model */,
 				A17393011D0852CD00D3C1C9 /* Screens */,
+				A17392EB1D08513300D3C1C9 /* AppDelegate.swift */,
 				A17392F21D08513300D3C1C9 /* Assets.xcassets */,
 				A17392F41D08513300D3C1C9 /* LaunchScreen.storyboard */,
-				A17392EB1D08513300D3C1C9 /* AppDelegate.swift */,
 				A17392F71D08513300D3C1C9 /* Info.plist */,
 			);
 			path = iXplore;
@@ -108,6 +110,7 @@
 				A1E732221D1039CC000B5ADD /* NewPlaceViewController.swift */,
 				A1E732281D108A72000B5ADD /* PersistenceManager.swift */,
 				A1E732231D1039CC000B5ADD /* NewPlaceViewController.xib */,
+				A1C800591D12DA8C00E82441 /* AlertHelper.swift */,
 			);
 			name = Screens;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 				TargetAttributes = {
 					A17392E71D08513300D3C1C9 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 9UX8L3TD2T;
 						SystemCapabilities = {
 							com.apple.Maps.iOS = {
 								enabled = 1;
@@ -227,6 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1C8005A1D12DA8C00E82441 /* AlertHelper.swift in Sources */,
 				A1D694B91D0F616500BDDFCF /* LoginViewController.swift in Sources */,
 				A1D694BC1D0F63DD00BDDFCF /* UserController.swift in Sources */,
 				A17392FF1D0852C400D3C1C9 /* MapAndTableViewController.swift in Sources */,
@@ -342,6 +347,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = iXplore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.iXplore;
@@ -353,6 +359,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = iXplore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.iXplore;

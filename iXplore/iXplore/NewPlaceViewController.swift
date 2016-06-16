@@ -20,21 +20,23 @@ class NewPlaceViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // set the delegates of the text fields
         self.longitudeField.delegate = self
         self.latitudeField.delegate = self
         
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        // try to update the location once the view as appeared
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         app.locationManager?.requestLocation()
         if app.currentLocation != nil {
             self.latitudeField.text! = "\(app.currentLocation!.latitude)"
             self.longitudeField.text! = "\(app.currentLocation!.longitude)"
         } else {
-            print("location not yet available")
+            let alert = AlertHelper.returnOneOptionAlert("Error", description: "Could not obtain your location for auto-fill.", optionTitle: "OK")
+            self.presentViewController(alert, animated: true, completion: nil)
         }
-        
-        // self.longitudeField.text! = long
-        // self.latitudeField.text! = lat
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,11 +51,17 @@ class NewPlaceViewController: UIViewController, UITextFieldDelegate {
     
     // for now, assume all fields are filled properly
     @IBAction func addPlaceButtonTapped(sender: UIButton) {
+        
         let coordinate = CLLocationCoordinate2D(latitude: Double(self.latitudeField.text!)!,
                                                 longitude: Double(self.longitudeField.text!)!)
-        PlaceController.sharedInstance.addPlace(coordinate, title: self.titleField.text!,
-                                                placeDescription: self.descriptionField.text!)
-        self.cancelButtonTapped(sender)
+        if (CLLocationCoordinate2DIsValid(coordinate)) {
+            PlaceController.sharedInstance.addPlace(coordinate, title: self.titleField.text!,
+                                                    placeDescription: self.descriptionField.text!)
+            self.cancelButtonTapped(sender)
+        } else {
+            let alert = AlertHelper.returnOneOptionAlert("Error", description: "Location is not valid.", optionTitle: "OK")
+            self.presentViewController(alert, animated: true, completion: nil)
+        }
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
