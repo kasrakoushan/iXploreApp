@@ -33,7 +33,7 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         // set the map's delegate to be self
         self.mapView.delegate = self
         
-        // NAVIGATION WORK
+        // APP NAVIGATION WORK
         self.navigationController?.navigationBar.hidden = false
         let button = UIBarButtonItem(title: "New Place", style: UIBarButtonItemStyle.Plain, target: self,
                                      action: #selector(MapAndTableViewController.newPlaceButtonTapped))

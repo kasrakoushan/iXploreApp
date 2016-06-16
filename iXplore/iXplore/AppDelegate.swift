@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        let loggedIn = false
+        let loggedIn = true
         
         // set up map and table view controller
         let mapAndTableViewController = MapAndTableViewController(nibName: "MapAndTableViewController", bundle: nil)

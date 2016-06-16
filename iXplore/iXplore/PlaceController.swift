@@ -80,7 +80,7 @@ class PlaceController {
     
     // remove a place from the model, given by its row
     func removePlace(path: NSIndexPath) {
-        if self.places.count < path.row {
+        if path.row < self.places.count {
             let place = self.places[path.row]
             // remove from places array
             self.places.removeAtIndex(path.row)
