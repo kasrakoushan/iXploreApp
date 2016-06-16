@@ -79,12 +79,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.last! as CLLocation
         self.currentLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        
     }
     
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
-        print("location manager failed with error \(error.description)")
-        let alert = AlertHelper.returnOneOptionAlert("Error", description: "Could not obtain location. You may still use the app.", optionTitle: "OK")
-        self.window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+        print("Location manager had a failure.")
     }
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {

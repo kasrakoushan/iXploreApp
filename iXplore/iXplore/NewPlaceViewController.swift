@@ -34,7 +34,7 @@ class NewPlaceViewController: UIViewController, UITextFieldDelegate {
             self.latitudeField.text! = "\(app.currentLocation!.latitude)"
             self.longitudeField.text! = "\(app.currentLocation!.longitude)"
         } else {
-            let alert = AlertHelper.returnOneOptionAlert("Error", description: "Could not obtain your location for auto-fill.", optionTitle: "OK")
+            let alert = Helper.returnOneOptionAlert("Error", description: "Could not obtain your location for auto-fill.", optionTitle: "OK")
             self.presentViewController(alert, animated: true, completion: nil)
         }
     }
@@ -59,7 +59,7 @@ class NewPlaceViewController: UIViewController, UITextFieldDelegate {
                                                     placeDescription: self.descriptionField.text!)
             self.cancelButtonTapped(sender)
         } else {
-            let alert = AlertHelper.returnOneOptionAlert("Error", description: "Location is not valid.", optionTitle: "OK")
+            let alert = Helper.returnOneOptionAlert("Error", description: "Location is not valid.", optionTitle: "OK")
             self.presentViewController(alert, animated: true, completion: nil)
         }
     }

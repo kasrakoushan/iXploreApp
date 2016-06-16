@@ -13,19 +13,22 @@ class PersistenceManager {
     
     static let PLACE_FILE_EXTENSION = "place"
     
-    // store the given place at the current subdirectory of documents (default in documents/)
+    // store the given place in documents
     class func storePlace(place: Place) {
-        let file = PersistenceManager.documentsDirectory().stringByAppendingString("/\(place.coordinate.latitude),\(place.coordinate.longitude).\(PLACE_FILE_EXTENSION)")
+        let file = PersistenceManager.documentsDirectory().stringByAppendingString(
+            "/\(place.coordinate.latitude),\(place.coordinate.longitude).\(PLACE_FILE_EXTENSION)")
         NSKeyedArchiver.archiveRootObject(place, toFile: file)
     }
     
-    // obtain the place object with the given name or coordinates (ONE must be non-nil, otherwise will crash)
+    // obtain the place object with the given file name or coordinates
     class func loadPlace(name: String? = nil, location: CLLocationCoordinate2D? = nil) -> Place? {
         var file: String
         if name != nil {
             file = PersistenceManager.documentsDirectory().stringByAppendingString("/\(name!)")
-        } else {
+        } else if location != nil {
             file = PersistenceManager.documentsDirectory().stringByAppendingString("/\(location!.latitude),\(location!.longitude).\(PLACE_FILE_EXTENSION)")
+        } else {
+            return nil
         }
         return NSKeyedUnarchiver.unarchiveObjectWithFile(file) as? Place
         
@@ -38,14 +41,14 @@ class PersistenceManager {
         return documentDirectory
     }
     
-    // remove place from memory
+    // remove the given place object from memory
     class func removePlace(place: Place) {
         let path = PersistenceManager.documentsDirectory().stringByAppendingString("/\(place.coordinate.latitude),\(place.coordinate.longitude).\(PLACE_FILE_EXTENSION)")
         let fileManager = NSFileManager.defaultManager()
         do {
             try fileManager.removeItemAtPath(path)
         } catch {
-            print("something went wrong")
+            print("removePlace: Place could not be removed from memory.")
         }
     }
 }

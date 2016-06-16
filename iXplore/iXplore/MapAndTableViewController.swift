@@ -85,18 +85,7 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         cell.cellLabel.text = place.title
         
         // set up the image from the given URL
-        if place.imageURL != nil {
-            let url: NSURL! = NSURL(string: place.imageURL!)
-            if url != nil {
-                let data: NSData! = NSData(contentsOfURL: url)
-                if data != nil {
-                    cell.cellImage.image = UIImage(data: data)
-                }
-            }
-            cell.cellImage.image = nil
-        } else {
-            cell.cellImage.image = nil
-        }
+        cell.cellImage.image = Helper.getImageFromUrl(place.imageURL)
         
         // set the date of the object
         let dateFormatter = NSDateFormatter()

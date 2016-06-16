@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Please allow us to use your location</string>
+	<string>Please enable location services in order to auto-fill your new locations.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

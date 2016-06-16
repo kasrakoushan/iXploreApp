@@ -11,6 +11,11 @@ import MapKit
 
 class PlaceController {
     
+    // an array storing the user's places
+    // the identifying property of a place is its coordinate location. all other properties can be modified.
+    var places = [Place]()
+    
+    
     // singleton variable
     class var sharedInstance: PlaceController {
         struct Static {
@@ -25,8 +30,9 @@ class PlaceController {
         return Static.instance!
     }
     
+    // return a bunch of locations for testing
     class func getTestPlaces() -> [Place] {
-        // set points
+        // set coordinates
         let points = [CLLocationCoordinate2D(latitude: 43.7735999, longitude: -79.4038429),
                       CLLocationCoordinate2D(latitude: 45.5094657, longitude: -73.5781447),
                       CLLocationCoordinate2D(latitude: 43.6573945, longitude: -79.3977025),
@@ -52,9 +58,7 @@ class PlaceController {
         return list
     }
     
-    
-    var places = [Place]()
-    
+    // add a place to the places array and persist it
     func addPlace(coordinate: CLLocationCoordinate2D, title: String, imageURL: String? = nil,
                   placeDescription: String? = nil, date: NSDate? = nil, favorite: Bool = false) {
         
@@ -74,15 +78,18 @@ class PlaceController {
         PersistenceManager.storePlace(place)
     }
     
+    // remove a place from the model, given by its row
     func removePlace(path: NSIndexPath) {
-        let place = self.places[path.row]
-        // remove from places array
-        self.places.removeAtIndex(path.row)
-        // remove from memory
-        PersistenceManager.removePlace(place)
+        if self.places.count < path.row {
+            let place = self.places[path.row]
+            // remove from places array
+            self.places.removeAtIndex(path.row)
+            // remove from memory
+            PersistenceManager.removePlace(place)
+        }
     }
     
-    // iterate through all stored places and append them to the array
+    // iterate through all stored places and append them to the model
     private func readPlacesFromMemory() {
         let path = PersistenceManager.documentsDirectory()
         let fileManager = NSFileManager.defaultManager()
@@ -96,7 +103,7 @@ class PlaceController {
         
     }
     
-    // populate the places property
+    // populate the places array from memory (or fill with test values)
     func getPlaces() {
         if self.places.count == 0 {
             self.readPlacesFromMemory()
@@ -109,7 +116,7 @@ class PlaceController {
         }
     }
     
-    // the place's coordinate must remain the same; all other properties can change
+    // update the properties of a place
     func updatePlace(place: Place) {
         PersistenceManager.storePlace(place)
     }
