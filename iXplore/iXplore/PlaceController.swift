@@ -101,7 +101,10 @@ class PlaceController {
         if self.places.count == 0 {
             self.readPlacesFromMemory()
             if self.places.count == 0 {
-                self.places = PlaceController.getTestPlaces()
+                for place in PlaceController.getTestPlaces() {
+                    self.places.append(place)
+                    PersistenceManager.storePlace(place)
+                }
             }
         }
     }

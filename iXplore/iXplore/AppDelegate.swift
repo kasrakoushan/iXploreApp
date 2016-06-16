@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import CoreLocation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {
 
     var window: UIWindow?
     var mapAndTableNavigationController: UINavigationController?
     var authenticationNavigationController: UINavigationController?
+    var locationManager: CLLocationManager?
+    var currentLocation: CLLocationCoordinate2D?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -34,10 +37,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = self.mapAndTableNavigationController
         } else {
             self.window?.rootViewController = self.authenticationNavigationController
+            
         }
         
-        
         self.window?.makeKeyAndVisible()
+        
+        // prompt the user for location permissions
+        self.locationManager = CLLocationManager()
+        self.locationManager?.delegate = self
+        self.locationManager?.requestWhenInUseAuthorization()
         
         return true
     }
@@ -67,7 +75,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func navigateToMainController() {
         self.window?.rootViewController = self.mapAndTableNavigationController
     }
-
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations.last! as CLLocation
+        self.currentLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        let alertController = UIAlertController(title: "Error", message: "Could not obtain location. You may still use the app.", preferredStyle: UIAlertControllerStyle.Alert)
+        let okAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        
+        alertController.addAction(okAction)
+        self.window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == CLAuthorizationStatus.AuthorizedWhenInUse {
+            self.locationManager?.desiredAccuracy = kCLLocationAccuracyKilometer
+            self.locationManager?.startUpdatingLocation()
+            self.locationManager?.requestLocation()
+        }
+    }
 
 }
 

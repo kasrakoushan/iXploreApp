@@ -91,10 +91,10 @@
 				A1D694AE1D0F0B4600BDDFCF /* Onboarding */,
 				A1D694A91D0F078700BDDFCF /* images */,
 				A17393041D08539C00D3C1C9 /* Model */,
-				A17392EB1D08513300D3C1C9 /* AppDelegate.swift */,
 				A17393011D0852CD00D3C1C9 /* Screens */,
 				A17392F21D08513300D3C1C9 /* Assets.xcassets */,
 				A17392F41D08513300D3C1C9 /* LaunchScreen.storyboard */,
+				A17392EB1D08513300D3C1C9 /* AppDelegate.swift */,
 				A17392F71D08513300D3C1C9 /* Info.plist */,
 			);
 			path = iXplore;
@@ -106,6 +106,7 @@
 				A17392FD1D0852C400D3C1C9 /* MapAndTableViewController.swift */,
 				A17392FE1D0852C400D3C1C9 /* MapAndTableViewController.xib */,
 				A1E732221D1039CC000B5ADD /* NewPlaceViewController.swift */,
+				A1E732281D108A72000B5ADD /* PersistenceManager.swift */,
 				A1E732231D1039CC000B5ADD /* NewPlaceViewController.xib */,
 			);
 			name = Screens;
@@ -117,7 +118,6 @@
 				A1A91EDB1D085DDE00A885F9 /* CustomTableViewCell.swift */,
 				A1D694BB1D0F63DD00BDDFCF /* UserController.swift */,
 				A1E732261D104D23000B5ADD /* PlaceController.swift */,
-				A1E732281D108A72000B5ADD /* PersistenceManager.swift */,
 				A1E2BBD11D10AB35004F0880 /* Place.swift */,
 			);
 			name = Model;

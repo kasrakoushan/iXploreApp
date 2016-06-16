@@ -8,9 +8,9 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class NewPlaceViewController: UIViewController, UITextFieldDelegate {
-    
     
     @IBOutlet var titleField: UITextField!
     @IBOutlet var descriptionField: UITextField!
@@ -22,6 +22,18 @@ class NewPlaceViewController: UIViewController, UITextFieldDelegate {
         
         self.longitudeField.delegate = self
         self.latitudeField.delegate = self
+        
+        let app = UIApplication.sharedApplication().delegate as! AppDelegate
+        app.locationManager?.requestLocation()
+        if app.currentLocation != nil {
+            self.latitudeField.text! = "\(app.currentLocation!.latitude)"
+            self.longitudeField.text! = "\(app.currentLocation!.longitude)"
+        } else {
+            print("location not yet available")
+        }
+        
+        // self.longitudeField.text! = long
+        // self.latitudeField.text! = lat
         // Do any additional setup after loading the view.
     }
 

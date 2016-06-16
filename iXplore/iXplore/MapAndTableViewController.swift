@@ -86,9 +86,16 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         
         // set up the image from the given URL
         if place.imageURL != nil {
-            let url = NSURL(string: place.imageURL!)
-            let data = NSData(contentsOfURL: url!)
-            cell.cellImage.image = UIImage(data: data!)
+            let url: NSURL! = NSURL(string: place.imageURL!)
+            if url != nil {
+                let data: NSData! = NSData(contentsOfURL: url)
+                if data != nil {
+                    cell.cellImage.image = UIImage(data: data)
+                }
+            }
+            cell.cellImage.image = nil
+        } else {
+            cell.cellImage.image = nil
         }
         
         // set the date of the object
@@ -143,9 +150,13 @@ class MapAndTableViewController: UIViewController, UITableViewDelegate, UITableV
         case "Favorite", "Unfavorite":
             // set favorite property of the given place to true
             place.favorite = !place.favorite
-            // remove and replace pin
-            self.mapView.removeAnnotation(place)
-            self.mapView.addAnnotation(place)
+            // remove and replace pin if the place is currently annotated
+            if self.mapView.annotations.contains({item in
+                return place.coordinate.latitude == item.coordinate.latitude && place.coordinate.longitude == item.coordinate.longitude
+            }) {
+                self.mapView.removeAnnotation(place)
+                self.mapView.addAnnotation(place)
+            }
             // update the cell in the table
             if place.favorite {
                 (self.tableView.cellForRowAtIndexPath(indexPath) as! CustomTableViewCell).starImage.image = UIImage(named: "star_pink.png")
