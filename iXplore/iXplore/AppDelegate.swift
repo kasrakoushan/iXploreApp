@@ -88,25 +88,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     }
     
     func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        switch status {
-        case .NotDetermined:
-            self.locationManager?.requestAlwaysAuthorization()
-            break
-        case .AuthorizedWhenInUse:
+        if status == CLAuthorizationStatus.AuthorizedWhenInUse {
             self.locationManager?.desiredAccuracy = kCLLocationAccuracyKilometer
             self.locationManager?.startUpdatingLocation()
-            break
-        case .AuthorizedAlways:
-            self.locationManager?.startUpdatingLocation()
-            break
-        case .Restricted:
-            // restricted by e.g. parental controls. User can't enable Location Services
-            break
-        case .Denied:
-            // user denied your app access to Location Services, but can grant access from Settings.app
-            break
-        default:
-            break
         }
     }
     
